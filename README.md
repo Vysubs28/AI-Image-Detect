@@ -1,45 +1,104 @@
-# AI Image Detect App
+# AI Image Classifier — Vision Transformer
 
-This project is an Image Detection web app built with Hugging Face Transformers and Gradio. It allows users to upload an image and get predictions for its content using a pretrained vision model.
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
+[![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)](https://pytorch.org)
+[![Hugging Face](https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat&logo=huggingface&logoColor=black)](https://huggingface.co/spaces/vysubs28/image-detect-app)
+[![Gradio](https://img.shields.io/badge/Gradio-FF7C00?style=flat)](https://gradio.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-## Demo
 
-Try the live app on Hugging Face Spaces:  
-[https://huggingface.co/spaces/vysubs28/image-detect-app](https://huggingface.co/spaces/vysubs28/image-detect-app)
+---
 
-## Features
+## Overview
 
-- Upload images easily via web UI
-- Uses state-of-the-art vision transformer model for accurate classification
-- Clean and responsive interface built with Gradio
-- Runs on CPU/GPU or Apple Silicon MPS if available
+Image classification web app powered by a **Vision Transformer (ViT)** pretrained model from Hugging Face. Upload any image and receive a predicted label with confidence score — running on CPU, GPU, or Apple Silicon MPS.
 
-## Installation (optional)
+Vision Transformers apply the transformer attention mechanism — originally developed for NLP — to image patches, treating an image as a sequence of fixed-size tiles. This architecture consistently outperforms traditional CNNs on large-scale image classification benchmarks and is the foundation of modern computer vision systems in medical imaging, autonomous vehicles, satellite analysis, and quality inspection.
 
-To run locally:
+---
+
+## Live Demo
+
+[**Try the app on Hugging Face Spaces**](https://huggingface.co/spaces/vysubs28/image-detect-app)
+
+Upload any image → receive predicted label + confidence score in real time. No setup required.
+
+---
+
+## How It Works
+
+```
+User uploads image (web UI)
+        ↓
+Image preprocessed into fixed-size patches (ViT tokenization)
+        ↓
+Vision Transformer applies multi-head self-attention across patches
+        ↓
+Classification head produces label probabilities
+        ↓
+Top prediction + confidence score displayed
+```
+
+**Hardware acceleration:** Automatically uses GPU if available, Apple Silicon MPS if on macOS, or falls back to CPU — no configuration required.
+
+---
+
+## Tech Stack
+
+| Component | Technology |
+|---|---|
+| Model | Vision Transformer (ViT) via Hugging Face |
+| Inference | PyTorch (CPU / GPU / MPS) |
+| NLP Library | Hugging Face Transformers |
+| Web Interface | Gradio |
+| Language | Python 3.11 |
+
+---
+
+## Local Setup
 
 ```bash
-git clone https://github.com/yourusername/image-detect-app.git
-cd image-detect-app
+git clone https://github.com/Vysubs28/AI-Image-Classifier-ViT
+cd AI-Image-Classifier-ViT
+
 python -m venv venv
-source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+source venv/bin/activate       # macOS/Linux
+# venv\Scripts\activate        # Windows
+
 pip install -r requirements.txt
 python app.py
-Usage
-Open the app
+```
 
-Upload an image
+The Gradio interface opens automatically in your browser.
 
-View the predicted label and confidence score
+---
 
-Technologies Used
-Python 3.11
+## Dependencies
 
-Transformers (Hugging Face)
+```
+torch
+transformers
+gradio
+```
 
-Gradio
+---
 
-PyTorch
+## Future Work
 
-License
+- Fine-tune ViT on domain-specific datasets (medical imaging, satellite imagery)
+- Add top-5 predictions with confidence bar chart
+- Extend to object detection (DETR) and image segmentation models
+- Build API endpoint for integration into production pipelines
+
+---
+
+## License
+
 MIT License
+
+---
+
+## Author
+
+**Vyaas Subramanian**  
+[github.com/Vysubs28](https://github.com/Vysubs28) · [LinkedIn](https://linkedin.com/in/vyaas-subramanian-427468237) · [Portfolio](https://vyaasportfolio.netlify.app)
